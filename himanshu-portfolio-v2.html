@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himanshu Tidke — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#13131a;--card:#1a1a24;--accent:#ffd166;--accent2:#7e9ee8;--green:#7ee8a0;--text:#f0ede8;--muted:#8a8680;--border:rgba(255,209,102,0.15)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+.bg-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.1;animation:float 8s ease-in-out infinite}
+.orb1{width:500px;height:500px;background:#ffd166;top:-10%;left:-10%;animation-delay:0s}
+.orb2{width:400px;height:400px;background:#7e9ee8;bottom:-10%;right:-10%;animation-delay:-4s}
+.orb3{width:300px;height:300px;background:#7ee8a0;top:40%;left:40%;animation-delay:-2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--accent)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:0.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);transition:color 0.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width 0.3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--accent)!important;color:#0a0a0f!important;padding:0.5rem 1.2rem;border-radius:50px;font-weight:700;transition:transform 0.2s,opacity 0.2s}
+.nav-cta:hover{transform:translateY(-2px);opacity:0.9}
+.nav-cta::after{display:none!important}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;position:relative;z-index:1}
+.hero-inner{max-width:750px;text-align:center}
+
+.avatar-wrap{position:relative;display:inline-block;margin-bottom:2rem}
+.avatar-ring{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:2.5px;margin:0 auto;animation:spin-slow 8s linear infinite}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+.avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--accent);animation:spin-slow 8s linear infinite reverse}
+.age-badge{position:absolute;bottom:0;right:-10px;background:var(--accent);color:#0a0a0f;font-size:0.62rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:50px;white-space:nowrap}
+
+.status-pill{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(126,232,160,0.1);border:0.5px solid rgba(126,232,160,0.3);color:var(--green);padding:0.35rem 1rem;border-radius:50px;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.5rem}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:1rem}
+.l1{display:block;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.l2{display:block;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.hero-sub{color:var(--muted);font-size:1rem;line-height:1.7;margin:0 auto 2rem;max-width:520px}
+.role-pills{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-bottom:2.5rem}
+.pill{display:flex;align-items:center;gap:0.4rem;background:var(--card);border:0.5px solid var(--border);padding:0.45rem 1rem;border-radius:50px;font-size:0.8rem;color:var(--muted);transition:all 0.3s}
+.pill:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.btn-p{background:var(--accent);color:#0a0a0f;padding:0.85rem 2rem;border-radius:50px;font-weight:700;font-size:0.9rem;transition:all 0.2s}
+.btn-p:hover{transform:translateY(-3px);opacity:0.9}
+.btn-o{border:0.5px solid var(--accent);color:var(--accent);padding:0.85rem 2rem;border-radius:50px;font-weight:500;font-size:0.9rem;transition:all 0.2s}
+.btn-o:hover{background:rgba(255,209,102,0.1);transform:translateY(-3px)}
+
+.social-row{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap}
+.sc{display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1rem;border-radius:50px;border:0.5px solid var(--border);background:var(--card);font-size:0.8rem;font-weight:500;transition:all 0.3s}
+.sc:hover{transform:translateY(-3px)}
+.sc.wa:hover{border-color:#25d366;color:#25d366;background:rgba(37,211,102,0.08)}
+.sc.ig:hover{border-color:#e1306c;color:#e1306c;background:rgba(225,48,108,0.08)}
+.sc.yt:hover{border-color:#ff0000;color:#ff0000;background:rgba(255,0,0,0.08)}
+.sc.wp:hover{border-color:#ff6122;color:#ff6122;background:rgba(255,97,34,0.08)}
+.sc.gm:hover{border-color:#ea4335;color:#ea4335;background:rgba(234,67,53,0.08)}
+
+.stats-strip{background:var(--surface);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:2.5rem 2rem;position:relative;z-index:1}
+.stats-inner{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap;max-width:700px;margin:0 auto}
+.stat-n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--accent);text-align:center}
+.stat-l{font-size:0.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:0.2rem;text-align:center}
+
+section.blk{padding:5rem 2rem;position:relative;z-index:1}
+.wrap{max-width:900px;margin:0 auto}
+.slbl{display:inline-block;color:var(--accent);font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.7rem;font-weight:500}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:0.8rem}
+.ssub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:520px}
+.divv{width:40px;height:2px;background:var(--accent);margin:1.2rem 0;border-radius:2px}
+.ctr{text-align:center}.ctr .divv,.ctr .ssub{margin-left:auto;margin-right:auto}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:2.5rem}
+.at p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:0.95rem}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-top:1.5rem}
+.ft{display:flex;align-items:center;gap:0.6rem;background:var(--card);border:0.5px solid var(--border);padding:0.65rem 0.9rem;border-radius:10px;font-size:0.82rem;transition:border-color 0.2s}
+.ft:hover{border-color:var(--accent)}
+.fd{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.ms{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mc{background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;transition:all 0.3s}
+.mc:hover{transform:translateY(-4px);border-color:var(--accent)}
+.mn{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--accent)}
+.ml{font-size:0.72rem;color:var(--muted);margin-top:0.2rem}
+
+.wc{background:var(--card);border:0.5px solid rgba(255,97,34,0.25);border-radius:14px;padding:1.2rem;margin-top:1.2rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.3s}
+.wc:hover{border-color:rgba(255,97,34,0.6)}
+.wi{width:44px;height:44px;background:rgba(255,97,34,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.wt h4{font-size:0.9rem;font-weight:600;margin-bottom:0.2rem}
+.wt p{color:var(--muted);font-size:0.78rem}
+.wa2{margin-left:auto;color:rgba(255,97,34,0.6);font-size:1.2rem}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2.5rem}
+.skc{background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:1.3rem;transition:all 0.3s}
+.skc:hover{transform:translateY(-5px);border-color:var(--accent)}
+.ski{font-size:1.8rem;margin-bottom:0.7rem}
+.skn{font-size:0.9rem;font-weight:600;margin-bottom:0.3rem}
+.sks{font-size:0.75rem;color:var(--muted);margin-bottom:0.7rem}
+.skbw{background:rgba(255,255,255,0.06);border-radius:50px;height:4px;overflow:hidden}
+.skb{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.3rem;margin-top:2.5rem}
+.pjc{background:var(--card);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s}
+.pjc:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+.pjt{height:160px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}
+.pjt::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,var(--card),transparent)}
+.pjb{padding:1.2rem}
+.pjtag{display:inline-block;background:rgba(255,209,102,0.1);color:var(--accent);font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;padding:0.2rem 0.65rem;border-radius:50px;margin-bottom:0.6rem}
+.pjb h3{font-size:0.95rem;font-weight:600;margin-bottom:0.4rem}
+.pjb p{color:var(--muted);font-size:0.82rem;line-height:1.5;margin-bottom:0.8rem}
+.pjm{display:flex;flex-wrap:wrap;gap:0.5rem}
+.pm{font-size:0.72rem;color:var(--green);background:rgba(126,232,160,0.08);padding:0.2rem 0.6rem;border-radius:50px;border:0.5px solid rgba(126,232,160,0.2)}
+
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem;align-items:start}
+.cls{display:flex;flex-direction:column;gap:0.8rem}
+.cl{display:flex;align-items:center;gap:1rem;background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:1rem 1.2rem;transition:all 0.3s}
+.cl:hover{transform:translateX(6px)}
+.cl.wa:hover{border-color:#25d366}
+.cl.gm:hover{border-color:#ea4335}
+.cl.yt:hover{border-color:#ff0000}
+.cl.ig:hover{border-color:#e1306c}
+.cl.wpl:hover{border-color:#ff6122}
+.ci{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ci.wa{background:rgba(37,211,102,0.12)}
+.ci.gm{background:rgba(234,67,53,0.12)}
+.ci.yt{background:rgba(255,0,0,0.12)}
+.ci.ig{background:rgba(225,48,108,0.12)}
+.ci.wpl{background:rgba(255,97,34,0.12)}
+.cn{font-size:0.85rem;font-weight:600;margin-bottom:0.1rem}
+.cv{font-size:0.75rem;color:var(--muted)}
+.cfb{background:var(--card);border:0.5px solid var(--border);border-radius:16px;padding:1.8rem}
+.cfb h3{font-size:1rem;font-weight:600;margin-bottom:1.2rem;color:var(--accent)}
+.fgg{margin-bottom:1rem}
+.fgg label{display:block;font-size:0.75rem;color:var(--muted);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.5px}
+.fgg input,.fgg textarea{width:100%;background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:0.75rem 0.9rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s}
+.fgg input:focus,.fgg textarea:focus{border-color:var(--accent)}
+.fgg textarea{resize:vertical;min-height:90px}
+.sbtn{width:100%;background:var(--accent);color:#0a0a0f;border:none;padding:0.9rem;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.sbtn:hover{opacity:0.88;transform:translateY(-2px)}
+
+footer{background:#070709;border-top:0.5px solid var(--border);padding:3rem 2rem 2rem;text-align:center;position:relative;z-index:1}
+.fl{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--accent);margin-bottom:0.8rem}
+.fn{display:flex;justify-content:center;gap:1.5rem;margin:1rem 0;flex-wrap:wrap}
+.fn a{color:var(--muted);font-size:0.82rem;transition:color 0.2s}
+.fn a:hover{color:var(--accent)}
+.fc{color:var(--muted);font-size:0.78rem}
+
+.gt{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--accent);color:#0a0a0f;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;z-index:99;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,209,102,0.3);opacity:0;pointer-events:none;transition:all 0.3s}
+.gt.show{opacity:1;pointer-events:all}
+.gt:hover{transform:translateY(-4px)}
+
+@media(max-width:700px){.nav-links{display:none}.about-grid,.cg{grid-template-columns:1fr}.stats-inner{gap:2rem}.social-row{gap:0.5rem}}
+</style>
+</head>
+<body>
+<div class="bg-wrap">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">HT.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/919022074348" target="_blank" class="nav-cta">Hire Me 🚀</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"><div class="avatar-inner">H</div></div>
+      <div class="age-badge">16 yrs 🔥</div>
+    </div>
+    <div class="status-pill"><div class="pulse"></div>Open for Work</div>
+    <h1><span class="l1">Himanshu</span><span class="l2">Tidke</span></h1>
+    <p class="hero-sub">Ek 16 saal ka developer jo web banata hai, dashboards design karta hai, aur data ko stories mein convert karta hai. 🚀</p>
+    <div class="role-pills">
+      <div class="pill">💻 Web Developer</div>
+      <div class="pill">📊 Dashboard Designer</div>
+      <div class="pill">🎬 Content Creator</div>
+      <div class="pill">📋 Excel Expert</div>
+      <div class="pill">📖 Story Writer</div>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p">🗂 View My Work</a>
+      <a href="#contact" class="btn-o">📩 Contact Me</a>
+    </div>
+    <div class="social-row">
+      <a href="https://wa.me/919022074348" target="_blank" class="sc wa">💬 WhatsApp</a>
+      <a href="https://www.instagram.com/himanshu782641" target="_blank" class="sc ig">📸 Instagram</a>
+      <a href="https://youtube.com/@himanshutidke-u7l" target="_blank" class="sc yt">▶️ YouTube</a>
+      <a href="https://www.wattpad.com/story/411855622" target="_blank" class="sc wp">📖 Wattpad</a>
+      <a href="mailto:Himanshutidke259@gmail.com" class="sc gm">✉️ Gmail</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div><div class="stat-n">16</div><div class="stat-l">Years Old</div></div>
+    <div><div class="stat-n">1000+</div><div class="stat-l">Excel Rows</div></div>
+    <div><div class="stat-n">3+</div><div class="stat-l">Projects Done</div></div>
+    <div><div class="stat-n">5+</div><div class="stat-l">Skills</div></div>
+  </div>
+</div>
+
+<section class="blk" id="about" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="slbl">About Me</div>
+    <div class="about-grid">
+      <div class="at">
+        <div class="stitle">Mein Kaun Hoon? 👋</div>
+        <div class="divv"></div>
+        <p>Main Himanshu Tidke hoon — 16 saal ka, 11th class ka student jo sirf padhta nahi balki real-world skills bhi develop kar raha hai.</p>
+        <p>Mera passion hai data ko beautiful visuals mein convert karna. 1000+ Excel rows se clean dashboards banana, responsive websites develop karna — yahi meri duniya hai.</p>
+        <p>Sath hi main YouTube pe bold content banata hoon aur Wattpad pe horror stories likhta hoon!</p>
+        <div class="fg2">
+          <div class="ft"><div class="fd"></div>Modern Web Design</div>
+          <div class="ft"><div class="fd"></div>Data Analytics</div>
+          <div class="ft"><div class="fd"></div>Dashboard Design</div>
+          <div class="ft"><div class="fd"></div>Content Strategy</div>
+          <div class="ft"><div class="fd"></div>Excel Reports</div>
+          <div class="ft"><div class="fd"></div>Story Writing</div>
+        </div>
+        <a href="https://www.wattpad.com/story/411855622" target="_blank" class="wc">
+          <div class="wi">🌙</div>
+          <div class="wt"><h4>Nightmares — My Wattpad Story</h4><p>Horror/thriller by Himanshutidke25</p></div>
+          <div class="wa2">→</div>
+        </a>
+      </div>
+      <div class="ms">
+        <div class="mc"><div class="mn">16</div><div class="ml">Years Old</div></div>
+        <div class="mc"><div class="mn">11th</div><div class="ml">Class Student</div></div>
+        <div class="mc"><div class="mn">1K+</div><div class="ml">Rows Analyzed</div></div>
+        <div class="mc"><div class="mn">∞</div><div class="ml">Curiosity</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="skills">
+  <div class="wrap">
+    <div class="ctr">
+      <div class="slbl">What I Know</div>
+      <div class="stitle">Mere Skills 🛠️</div>
+      <div class="divv"></div>
+      <p class="ssub">Sikhna kabhi band nahi hota — ye hain abhi tak ke skills.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skc"><div class="ski">🌐</div><div class="skn">HTML & CSS</div><div class="sks">Responsive websites</div><div class="skbw"><div class="skb" style="width:85%"></div></div></div>
+      <div class="skc"><div class="ski">📊</div><div class="skn">Dashboard Design</div><div class="sks">Business analytics</div><div class="skbw"><div class="skb" style="width:80%"></div></div></div>
+      <div class="skc"><div class="ski">📋</div><div class="skn">Excel & Data</div><div class="sks">1000+ row reports</div><div class="skbw"><div class="skb" style="width:90%"></div></div></div>
+      <div class="skc"><div class="ski">🎬</div><div class="skn">Content Creation</div><div class="sks">YouTube scripts</div><div class="skbw"><div class="skb" style="width:75%"></div></div></div>
+      <div class="skc"><div class="ski">🐍</div><div class="skn">Basic Python</div><div class="sks">Learning & growing</div><div class="skbw"><div class="skb" style="width:45%"></div></div></div>
+      <div class="skc"><div class="ski">📖</div><div class="skn">Story Writing</div><div class="sks">Horror & thriller</div><div class="skbw"><div class="skb" style="width:70%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="projects" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="ctr">
+      <div class="slbl">My Work</div>
+      <div class="stitle">Projects 🗂️</div>
+      <div class="divv"></div>
+      <p class="ssub">Real data se real dashboards — ye hain mere kuch kaam.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="pjc">
+        <div class="pjt" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">📊</div>
+        <div class="pjb"><div class="pjtag">Business Analytics</div><h3>Revenue by Region Dashboard</h3><p>East, West, North, South ka full revenue analysis. KPIs, pie charts, line graphs — sab included.</p><div class="pjm"><span class="pm">Revenue: ₹64,980</span><span class="pm">Profit: 23.1%</span><span class="pm">Top: East</span></div></div>
+      </div>
+      <div class="pjc">
+        <div class="pjt" style="background:linear-gradient(135deg,#0d1b2a,#1b263b)">📈</div>
+        <div class="pjb"><div class="pjtag">Sales Analytics</div><h3>Business Performance Dashboard</h3><p>Product-wise sales, profit margin, return rate ka deep analysis. Headphones star product identify kiya.</p><div class="pjm"><span class="pm">Revenue: ₹18.3L</span><span class="pm">Profit: 26.6%</span><span class="pm">Return: 6.74%</span></div></div>
+      </div>
+      <div class="pjc">
+        <div class="pjt" style="background:linear-gradient(135deg,#1a0a2e,#2d1b69)">🌐</div>
+        <div class="pjb"><div class="pjtag">Web Development</div><h3>Portfolio Website</h3><p>Ye website jo tum abhi dekh rahe ho — khud banaya hai HTML, CSS, aur JS se.</p><div class="pjm"><span class="pm">Dark Theme</span><span class="pm">Responsive</span><span class="pm">Animated</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="contact">
+  <div class="wrap">
+    <div class="ctr">
+      <div class="slbl">Get In Touch</div>
+      <div class="stitle">Baat Karte Hain! 🤝</div>
+      <div class="divv"></div>
+      <p class="ssub">Project chahiye ya sirf hi-hello? Seedha message karo!</p>
+    </div>
+    <div class="cg">
+      <div class="cls">
+        <a href="https://wa.me/919022074348?text=Hi%20Himanshu!%20I%20saw%20your%20portfolio!" target="_blank" class="cl wa"><div class="ci wa">💬</div><div><div class="cn">WhatsApp</div><div class="cv">+91 90220 74348</div></div></a>
+        <a href="mailto:Himanshutidke259@gmail.com" class="cl gm"><div class="ci gm">📧</div><div><div class="cn">Gmail</div><div class="cv">Himanshutidke259@gmail.com</div></div></a>
+        <a href="https://youtube.com/@himanshutidke-u7l" target="_blank" class="cl yt"><div class="ci yt">▶️</div><div><div class="cn">YouTube</div><div class="cv">@himanshutidke-u7l</div></div></a>
+        <a href="https://www.instagram.com/himanshu782641" target="_blank" class="cl ig"><div class="ci ig">📸</div><div><div class="cn">Instagram</div><div class="cv">@himanshu782641</div></div></a>
+        <a href="https://www.wattpad.com/story/411855622" target="_blank" class="cl wpl"><div class="ci wpl">📖</div><div><div class="cn">Wattpad</div><div class="cv">Nightmares Story</div></div></a>
+      </div>
+      <div class="cfb">
+        <h3>✉️ Send a Message</h3>
+        <form action="https://formspree.io/f/xlgvwoke" method="POST" id="cf">
+          <div class="fgg"><label>Your Name</label><input type="text" name="name" placeholder="Aapka naam" required></div>
+          <div class="fgg"><label>Email</label><input type="email" name="email" placeholder="aapka@email.com" required></div>
+          <div class="fgg"><label>Message</label><textarea name="message" placeholder="Kya kaam hai batao..." required></textarea></div>
+          <button type="submit" class="sbtn" id="sb">Send Message 🚀</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">HT.</div>
+  <div class="fn">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+    <a href="https://youtube.com/@himanshutidke-u7l" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/himanshu782641" target="_blank">Instagram</a>
+    <a href="https://www.wattpad.com/story/411855622" target="_blank">Wattpad</a>
+  </div>
+  <p class="fc">© 2026 Himanshu Tidke — 16 saal ka developer 🚀 Building Skills • Creating Projects • Growing Every Day</p>
+</footer>
+
+<button class="gt" id="gt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('gt').classList.toggle('show',window.scrollY>400)});
+document.getElementById('cf').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const b=document.getElementById('sb');
+  b.textContent='Sending...';b.disabled=true;
+  try{
+    const r=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{Accept:'application/json'}});
+    if(r.ok){b.textContent='✅ Sent!';b.style.background='#7ee8a0';this.reset();}
+    else{b.textContent='❌ Try Again';b.disabled=false;}
+  }catch{b.textContent='❌ Error';b.disabled=false;}
+});
+</script>
+</body>
+</html>
